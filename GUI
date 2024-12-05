@@ -1,0 +1,123 @@
+# Import Module
+# Interface 1
+from tkinter import *
+from tkinter import filedialog
+
+root1 = Tk()
+root1.title("Grade Calculator") #name
+root1.geometry("1024x768") #dimensions
+
+l = Label(root1, text = "Grade Calculator", font=('Times New Roman', 45,'bold')) #name on page
+l.place(x=512, y=40, anchor="center")
+
+inputType = Label (root1, text="Input Type", font=('Calibri',20)) #Input Type Label
+inputType.place (x=512, y= 100, anchor='center')
+
+#https://www.geeksforgeeks.org/file-explorer-in-python-using-tkinter/
+def browsefiles():
+    filename = filedialog.askopenfilename(initialdir="/",
+                                          title="Select a File",
+                                          filetypes=(("Excel Spreadsheets",
+                                                      "*.xls"),
+                                                     ("all files",
+                                                      "*.*")))
+
+    inputType.configure(text="File Opened: " + filename)
+
+excel = Label(root1, text = "Excel File: ", font =("Calibri", 25,))
+excel.place (x=150, y=250, anchor='center')
+excel_explore = Button(root1,
+                        text = "Excel Files",
+                        command = browsefiles)
+excel_explore.place (x=768, y=250, anchor='center')
+
+orText = Label (root1, text = "Or: ", font =("Calibri", 25))
+orText.place (x=150, y=382, anchor='center')
+
+#https://www.geeksforgeeks.org/file-explorer-in-python-using-tkinter/
+def browsefiles():
+    filename = filedialog.askopenfilename(initialdir="/",
+                                          title="Select a File",
+                                          filetypes=(("all files",
+                                                      "*.*"),
+                                                     ("all files",
+                                                      "*.*")))
+    inputType.configure(text="File Opened: " + filename)
+
+fileType = Label (root1, text="Other File: ", font= ("Calibri", 25)) #File Name Text and Text Box
+fileType.place (x= 150, y=512, anchor ='center')
+fileType.explore = Button(root1,
+                        text = "More Files",
+                        command = browsefiles)
+fileType.explore.place (x=768, y = 512, anchor='center')
+
+
+#Code for Submit button
+submit_button= Button(root1, text="Submit")
+submit_button.place (x=512, y=637, anchor='center')
+
+root1.mainloop()
+
+#import module
+#interface 2
+from tkinter import *
+
+root2 = Tk ()
+root2.title("Data Input") #name
+root2.geometry("1024x768") #dimensions
+
+
+w = Label(root2, text = "Is this data correct?", font=('Times New Roman', 45,'bold'))
+w.place (x=512, y=40, anchor="center")
+
+#data entry display
+
+yes_button= Button(root2, text="Yes", font="Calibri")
+yes_button.place (x=384, y=650, anchor="center")
+
+no_button= Button(root2, text="No", font="Calibri")
+no_button.place (x=640, y=650, anchor="center")
+
+root2.mainloop()
+
+#import module
+#interface 3
+from tkinter import *
+
+root3 = Tk()
+root3.title ("Grading System")
+root3.geometry ("1024x768")
+
+g = Label (root3, text="What Type of Grading System is Used?", font=("Times New Roman", 45, 'bold'))
+g.place (x=512, y=40, anchor="center")
+
+point_button= Button (root3, text="Points")
+point_button.place (x=512, y=179, anchor="center")
+
+weighted_button= Button(root3, text="Weighted")
+weighted_button.place (x=512, y=408, anchor="center")
+
+
+average_button= Button(root3, text="Average")
+average_button.place (x=512, y=637, anchor="center")
+
+root3.mainloop()
+
+#import Module
+#Interface 4
+from tkinter import *
+
+root4 = Tk()
+root4.title ("Grades")
+root4.geometry ("1024x768")
+
+c = Label (root4, text="Calculations", font=("Times New Roman", 45, 'bold'))
+c.place (x=512, y=40, anchor='center')
+
+a1 = Label (root4, text="Assignment 1:", font=("Calibri", 25))
+a1.place (x=256, y= 179, anchor='center')
+
+a2 = Label (root4, text="Assignment 2:", font=("Calibri",25))
+a2.place (x=256, y=408, anchor='center')
+
+root4.mainloop()
