@@ -1,0 +1,81 @@
+def get_grades_and_weights():
+    """
+    Collect assignments, their scores, and weights from the user.
+    Returns a list of tuples with assignment details (name, score, weight).
+    """
+    grades = []
+    print("\nEnter assignment details (type 'done' to finish):")
+
+    while True:
+        # Ask for assignment name
+        assignment_name = input("Enter assignment name: ").strip()
+        if assignment_name.lower() == 'done':
+            break
+
+        try:
+            # Ask for score
+            score = float(input(f"Enter the score for {assignment_name} (0-100): ").strip())
+            if not (0 <= score <= 100):
+                print("Score must be between 0 and 100.")
+                continue
+
+            # Ask for weight
+            weight = float(input(f"Enter the weight for {assignment_name} (e.g., 0.2 for 20%): ").strip())
+            if not (0 <= weight <= 1):
+                print("Weight must be between 0 and 1.")
+                continue
+
+            grades.append((assignment_name, score, weight))
+        except ValueError:
+            print("Invalid input. Please enter numbers for score and weight.")
+
+    return grades
+
+
+def calculate_gpa(grades):
+    """
+    Calculate the GPA based on a weighted average.
+    :param grades: List of tuples (assignment_name, score, weight)
+    :return: The GPA value.
+    """
+    total_weight = sum(weight for _, _, weight in grades)
+    if total_weight != 1:
+        print("\nWarning: Total weight is not equal to 1. GPA will be normalized.")
+
+    weighted_sum = sum(score * weight for _, score, weight in grades)
+    return weighted_sum / total_weight if total_weight > 0 else 0
+
+
+def display_sorted_assignments(grades):
+    """
+    Sort and display assignments by their weighted percentage.
+    :param grades: List of tuples (assignment_name, score, weight)
+    """
+    # Calculate percentage for each assignment and sort
+    percentages = [(name, score * weight, weight) for name, score, weight in grades]
+    sorted_percentages = sorted(percentages, key=lambda x: x[1])  # Sort by weighted score
+
+    print("\nAssignments sorted by contribution to GPA (low to high):")
+    for name, weighted_score, weight in sorted_percentages:
+        print(f"{name}: Weighted Score = {weighted_score:.2f}, Weight = {weight:.2f}")
+
+
+def main():
+    print("Welcome to the GPA Calculator!\n")
+
+    # Collect grades and weights
+    grades = get_grades_and_weights()
+    if not grades:
+        print("No grades entered. Exiting.")
+        return
+
+    # Calculate GPA
+    gpa = calculate_gpa(grades)
+    print(f"\nYour GPA (weighted average) is: {gpa:.2f}")
+
+    # Display sorted assignments
+    display_sorted_assignments(grades)
+
+
+if __name__ == "__main__":
+    main()
